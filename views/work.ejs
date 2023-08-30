@@ -1,0 +1,32 @@
+<%- include("partials/header.ejs") %>
+    <main>
+        <div class="box" id="heading">
+            <h1>
+                Work List
+            </h1>
+
+        </div>
+        <div class="box">
+            <form class="item" action="/work" method="post">
+                <input type="text" name="newItem" placeholder="New Item">
+                <button type="submit">➤</button>
+            </form>
+
+            <% workItems.forEach((workItems) => { %>
+                <div class="item">
+                    <form class="large" action="/deletework" method="post">
+                    <input class="input" type="checkbox"  name="checked"  value="<%= workItems._id%>" onChange="this.form.submit()">
+                    <label for="">
+                        <p>
+                            <%= workItems.name%>
+                        </p>
+                    </label>
+                    </form>
+                </div>
+           <% }); %>
+                
+            
+        </div>
+
+    </main>
+    <%- include('partials/footer.ejs') %>

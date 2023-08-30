@@ -1,0 +1,39 @@
+<%- include("partials/header.ejs") %>
+    <main>
+        <div class="box" id="heading">
+            <% var days=['Sunday', 'Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' ]; %>
+                <% var monthNames=["January", "February" , "March" , "April" , "May" , "June" , "July" , "August"
+                    , "September" , "October" , "November" , "December" ]; %>
+                    <% var d=days[new Date().getDay()] %>
+                        <% var m=monthNames[new Date().getMonth()] %>
+                            <% var t=new Date().getDate() %>
+                                <h1>
+                                    <%= d %> , <%= m %>
+                                            <%= t %>
+                                </h1>
+
+        </div>
+        <div class="box">
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item">
+                <button type="submit">➤</button>
+            </form>
+                <% items.forEach((item) => { %>
+                   <div class="item">
+                    <form class="large" action="/delete" method="post">
+                    <input class="input" type="checkbox" name="checked"  value="<%= item._id%>" onChange="this.form.submit()">
+                    <label >
+                        <p>
+                            <%= item.name %>
+                        </p>
+                    </label>
+                </form>
+                </div> 
+           <% }); %>
+        </div>  
+               
+               
+
+    </main>
+    <%- include('partials/footer.ejs') %>
+   
