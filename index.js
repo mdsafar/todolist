@@ -66,7 +66,7 @@ app.post("/work",(req,res)=>{
     res.redirect('/work')
     }else{
       alert("Please type Something")
-      res.redirect('/')
+      res.redirect('/work')
     }
   })
 
