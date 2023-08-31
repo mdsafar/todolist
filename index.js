@@ -1,6 +1,7 @@
 import express from "express";
 import bodyparser from "body-parser";
 import Mongoose  from "mongoose";
+import alert from "alert";
 const app = express();
 const port = 3000;
 app.use(express.static("public"))
@@ -28,11 +29,16 @@ app.get("/",(req,res)=>{
 
 app.post("/",(req,res)=>{
   let newitems = req.body.newItem;
+  if(newitems){
   const today = new Today({
     name : newitems
   })
   today.save()
   res.redirect("/")
+}else{
+  alert("Please type Something")
+  res.redirect('/')
+}
 })
 app.post("/delete",(req,res)=>{
   const checkedListid = req.body.checked;
@@ -52,11 +58,16 @@ app.get("/work",(req,res)=>{
 
 app.post("/work",(req,res)=>{
     let workitems = req.body.newItem;
+    if(workitems){
      const work = new Work({
       name: workitems
      })
      work.save()
     res.redirect('/work')
+    }else{
+      alert("Please type Something")
+      res.redirect('/')
+    }
   })
 
   app.post("/deletework",(req,res)=>{

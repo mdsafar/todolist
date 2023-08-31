@@ -32,6 +32,7 @@
     border-bottom-right-radius: 20px ;
     align-items: center;
     min-height: 70px;
+    position: relative;
 }
 .item p{
     margin: 0;
@@ -76,6 +77,15 @@ input[type="text"]{
 }
 .large{
     display: flex;
+}
+.small-time{
+    position: absolute;
+    bottom: 2px;
+    right: 14px;
+}
+.small-time span{
+    font-size: 9px;
+    color: #BFBFBF;
 }
 ::placeholder{
     color: #71C9CE;
