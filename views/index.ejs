@@ -1,12 +1,6 @@
 <%- include("partials/header.ejs") %>
     <main>
         <div class="box" id="heading">
-            <% var days=['Sunday', 'Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' ]; %>
-                <% var monthNames=["January", "February" , "March" , "April" , "May" , "June" , "July" , "August"
-                    , "September" , "October" , "November" , "December" ]; %>
-                    <% var d=days[new Date().getDay()] %>
-                        <% var m=monthNames[new Date().getMonth()] %>
-                            <% var t=new Date().getDate() %>
                                 <h1>
                                     <%= d %> , <%= m %>
                                             <%= t %>
@@ -29,12 +23,6 @@
                     </label>
                 </form>
                 <div class="small-time">
-                <% var days=['Sunday', 'Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' ]; %>
-                <% var monthNames=["January", "February" , "March" , "April" , "May" , "June" , "July" , "August"
-                    , "September" , "October" , "November" , "December" ]; %>
-                    <% var d=days[new Date().getDay()] %>
-                        <% var m=monthNames[new Date().getMonth()] %>
-                            <% var t=new Date().getDate() %>
                                 <span>
                                     <%= t %>  <%= m %>
                                             <%= new Date().getFullYear() %>
