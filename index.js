@@ -42,7 +42,11 @@ app.post("/", (req, res) => {
   if (newitems) {
     const today = new Today({
       name: newitems,
-      date : [date,month,year]
+      date :{
+         day : date,
+         month : month,
+         year : year
+      }
     })
     today.save()
     res.redirect("/")
@@ -73,7 +77,11 @@ app.post("/work", (req, res) => {
   if (workitems) {
     const work = new Work({
       name: workitems,
-      dates : [date,month,year]
+      dates : {
+        day : date,
+        month : month,
+        year : year
+      }
     })
     work.save()
     res.redirect('/work')
