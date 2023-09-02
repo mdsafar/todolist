@@ -1,6 +1,6 @@
 import express from "express";
 import bodyparser from "body-parser";
-import Mongoose from "mongoose";
+import Mongoose, { Schema } from "mongoose";
 import alert from "alert";
 const app = express();
 const port = 3000;
@@ -14,15 +14,18 @@ const monthNames = ["January", "February", "March", "April", "May", "June", "Jul
 const day = days[new Date().getDay()]
 const month = monthNames[new Date().getMonth()]
 const date = new Date().getDate()
+const year = new Date().getFullYear()
 
 const todaySchema = new Mongoose.Schema({
-  name: String
+  name: String,
+  date : Schema.Types.Mixed
 })
 
 const Today = Mongoose.model("today", todaySchema)
 
 const workSchema = new Mongoose.Schema({
-  name: String
+  name: String,
+  dates : Schema.Types.Mixed
 })
 const Work = Mongoose.model("work", workSchema)
 
@@ -31,13 +34,15 @@ app.get("/", (req, res) => {
   Today.find({}).then((founditem) => {
     res.render('index.ejs', { items: founditem , d : day, m : month, t : date})
   })
+  
 })
 
 app.post("/", (req, res) => {
   let newitems = req.body.newItem;
   if (newitems) {
     const today = new Today({
-      name: newitems
+      name: newitems,
+      date : [date,month,year]
     })
     today.save()
     res.redirect("/")
@@ -59,6 +64,7 @@ app.post("/delete", (req, res) => {
 app.get("/work", (req, res) => {
   Work.find({}).then((founditem) => {
     res.render('work.ejs', { workItems: founditem, d : day, m : month, t : date})
+    console.log(founditem.dates)
   })
 })
 
@@ -66,7 +72,8 @@ app.post("/work", (req, res) => {
   let workitems = req.body.newItem;
   if (workitems) {
     const work = new Work({
-      name: workitems
+      name: workitems,
+      dates : [date,month,year]
     })
     work.save()
     res.redirect('/work')

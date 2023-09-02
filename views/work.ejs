@@ -12,26 +12,26 @@
                 <button type="submit">➤</button>
             </form>
 
-            <% workItems.forEach((workItems) => { %>
+            <% workItems.forEach((workItem)=> { %>
                 <div class="item">
                     <form class="large" action="/deletework" method="post">
-                    <input class="input" type="checkbox"  name="checked"  value="<%= workItems._id%>" onChange="this.form.submit()">
-                    <label for="">
-                        <p>
-                            <%= workItems.name%>
-                        </p>
-                    </label>
+                        <input class="input" type="checkbox" name="checked" value="<%= workItem._id%>"
+                            onChange="this.form.submit()">
+                        <label for="">
+                            <p>
+                                <%= workItem.name%>
+                            </p>
+                        </label>
                     </form>
                     <div class="small-time">
-                                        <span>
-                                            <%= t %>  <%= m %>
-                                                    <%= new Date().getFullYear() %>
-                                        <span>
-                                        </div>
+                        <span>
+                            <%= workItem.dates[0] %> <%= workItem.dates[1] %> <%= workItem.dates[2] %>
+                                <span>
+                    </div>
                 </div>
-           <% }); %>
-                
-            
+                <% }); %>
+
+
         </div>
 
     </main>
